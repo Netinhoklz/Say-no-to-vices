@@ -49,8 +49,6 @@ Tecnologias: Python 3 + Flask + SQLite + OpenAI SDK + matplotlib + markdown-it-p
 
 ## 🧭 Esquema visual (Mapa mental + Fluxo)
 
-Dica: o GitHub já suporta Mermaid. Se o mindmap não renderizar para você, use o diagrama ASCII de fallback logo abaixo.
-
 Mapa mental (Mermaid):
 ```mermaid
 mindmap
