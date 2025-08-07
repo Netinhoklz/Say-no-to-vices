@@ -282,8 +282,10 @@ Inclua um arquivo LICENSE e referencie aqui.
 ---
 
 ## 📷 Screenshots
+- Formulário inicial.
 ![Formulário](https://i.imgur.com/9sj4ldN.png)
-
+- Chat com o Aura.
+- ![Formulário](https://i.imgur.com/We3SEp1.png)
 ---
 
 Feito com carinho para quem luta por dias melhores. Você não está sozinho(a). 💙
