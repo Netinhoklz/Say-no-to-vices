@@ -1,7 +1,3 @@
-Boa! O erro veio do Mermaid no mindmap (caracteres como aspas e ponto-e-vírgula dentro do texto do nó). Abaixo está um README.md atualizado, com os diagramas corrigidos para renderizar no GitHub. É só colar na raiz do repositório.
-
----
-
 # SayNoToVices • Aura 💚
 Um assistente conversacional empático que apoia pessoas a reduzir ou deixar vícios — com registro de recaídas e relatórios visuais de progresso.  
 Psicologia baseada em evidências, linguagem humana e dados que motivam, sem julgamentos.
@@ -114,33 +110,6 @@ mindmap
       Sanitizacao de HTML
       CSRF futuro
       Limpeza de reports futuro
-```
-
-Fallback ASCII (se o mindmap não renderizar):
-```
-SayNoToVices / Aura
-├─ Objetivo
-│  ├─ Apoio empatico e pratico
-│  ├─ Relatorios que motivam
-│  └─ Sem julgamentos
-├─ Frontend
-│  ├─ Formulario (/)
-│  └─ Chat (/chat/:id)
-│     ├─ UI (avatar, lista, envio)
-│     └─ Limpar conversa
-├─ Backend (Flask)
-│  ├─ Rotas: /, /chat/:id, /send_message/:id, /clear_chat/:id
-│  └─ Helpers: tempo, estatisticas e grafico
-├─ IA (OpenAI)
-│  ├─ Prompts por tema
-│  ├─ Ferramentas: registrar, editar, relatorio
-│  └─ Fluxo: historico → ferramentas → resposta humana
-├─ Banco (SQLite)
-│  ├─ conversations (dados + recaidas)
-│  └─ messages (role, content, timestamp)
-└─ Relatorios (matplotlib)
-   ├─ Calendario e metricas
-   └─ Imagem em static/reports
 ```
 
 ---
