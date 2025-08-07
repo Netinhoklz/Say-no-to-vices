@@ -282,7 +282,7 @@ Inclua um arquivo LICENSE e referencie aqui.
 ---
 
 ## 📷 Screenshots
-![Formulário](https://imgur.com/9sj4ldN)
+![Formulário](https://i.imgur.com/9sj4ldN.png)
 
 ---
 
