@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversando com Aura</title>
+    <!-- Fontes, Ícones e Estilos (mesmos do passo anterior) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- O data-conversation-id é crucial para o JavaScript -->
+    <div class="chat-container" data-conversation-id="{{ conversation.id }}">
+        <div class="chat-header">
+            <div class="avatar-container">
+                <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Avatar do Bot" class="avatar">
+            </div>
+            <div class="chat-info">
+                <!-- Mostra o nome que o usuário preencheu no formulário -->
+                <h2>Aura & {{ conversation.name }}</h2>
+                <p>Online</p>
+            </div>
+            <button id="clear-chat-btn" title="Apagar e Recomeçar">🗑️</button>
+        </div>
+        <div class="message-list" id="message-list">
+            <!-- As mensagens carregadas do histórico aparecerão aqui -->
+            {% for message in messages %}
+                <div class="message {{ 'user-message' if message.role == 'user' else 'bot-message' }}">
+                    <div class="message-content">
+                        <!-- O | safe continua importante para o Markdown -->
+                        {{ message.content | safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="chat-footer">
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off" required>
+                <button type="submit" id="send-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts (sem alteração na inclusão) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

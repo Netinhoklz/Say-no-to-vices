@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo(a) ao Aura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Avatar" class="form-avatar">
+            <h1>Aura - Seu Assistente Pessoal</h1>
+            <p>Para começar, por favor, preencha algumas informações. Seus dados nos ajudam a personalizar seu apoio.</p>
+        </div>
+        <form action="{{ url_for('form_page') }}" method="post" class="user-form">
+            <div class="form-group">
+                <label for="name">Seu Nome</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Sua Idade</label>
+                <input type="number" id="age" name="age" required min="13">
+            </div>
+            <div class="form-group">
+                <label for="gender">Sexo</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                    <option value="Prefiro não dizer">Prefiro não dizer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="addiction_type">Sobre qual desafio você gostaria de conversar?</label>
+                <select id="addiction_type" name="addiction_type" required>
+                    <option value="" disabled selected>Selecione um tópico...</option>
+                    {% for option in addiction_options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="addiction_duration">Há quanto tempo você lida com isso? (Ex: 6 meses, 2 anos)</label>
+                <input type="text" id="addiction_duration" name="addiction_duration" required>
+            </div>
+            <button type="submit" class="submit-btn">Iniciar Conversa</button>
+        </form>
+    </div>
+</body>
+</html>
