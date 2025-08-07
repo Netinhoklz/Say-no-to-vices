@@ -136,7 +136,6 @@ mindmap
 - conversations: dados do usuário, tipo de vício, prompt e campo recaidas (datas AAAA-MM-DD separadas por ponto e vírgula)
 - messages: histórico (user/assistant), conteúdo e timestamp
 
-Dica de evolução: migrar recaídas para uma tabela dedicada (id, conversation_id, date).
 
 ---
 
@@ -205,7 +204,6 @@ http://127.0.0.1:5000
 - 🧽 Correções: peça para adicionar/remover uma data de recaída registrada por engano.
 - 🗑️ Recomeçar: clique no ícone da lixeira para apagar a conversa e iniciar outra.
 
-Dica: seja específico nas datas (“ontem”, “segunda”, “2025-08-05”). O Aura confirma antes de registrar.
 
 ---
 
@@ -284,8 +282,7 @@ Inclua um arquivo LICENSE e referencie aqui.
 ---
 
 ## 📷 Screenshots
-- Adicione aqui prints do formulário, do chat e um exemplo de relatório para enriquecer o GitHub.  
-Sugestão: uma pasta docs/ com imagens e GIFs curtos.
+![Formulário](https://imgur.com/a/Fyd8bkG)
 
 ---
 
