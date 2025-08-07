@@ -1,3 +1,7 @@
+Boa! O erro veio do Mermaid no mindmap (caracteres como aspas e ponto-e-vírgula dentro do texto do nó). Abaixo está um README.md atualizado, com os diagramas corrigidos para renderizar no GitHub. É só colar na raiz do repositório.
+
+---
+
 # SayNoToVices • Aura 💚
 Um assistente conversacional empático que apoia pessoas a reduzir ou deixar vícios — com registro de recaídas e relatórios visuais de progresso.  
 Psicologia baseada em evidências, linguagem humana e dados que motivam, sem julgamentos.
@@ -56,111 +60,115 @@ Mapa mental (Mermaid):
 mindmap
   root((SayNoToVices / Aura))
     Objetivo
-      Apoio empático e prático
-      Dados que motivam (relatórios)
+      Apoio empatico e pratico
+      Dados que motivam relatorios
       Sem julgamentos
     Frontend
-      Formulário (/)
-      Chat (/chat/:id)
+      Formulario raiz
+      Chat /chat/:id
       UI
-        Avatar, Lista de mensagens, Envio
-        Botão de limpar conversa
-    Backend (Flask)
+        Avatar e lista de mensagens
+        Botao limpar conversa
+    Backend Flask
       Rotas
-        "/" (form)
-        "/chat/:id"
-        "/send_message/:id":::post
-        "/clear_chat/:id":::post
+        GET /
+        GET /chat/:id
+        POST /send_message/:id
+        POST /clear_chat/:id
       Helpers
-        Tempo (dia/horário/período)
-        Estatísticas e gráfico
-    IA (OpenAI)
+        Tempo e metadados
+        Estatisticas e grafico
+    IA OpenAI
       Prompts por tema
-        Álcool, Tabaco, Pornografia, Redes Sociais, Jogos, Medicamentos
-      Ferramentas (Tools)
+        Alcool
+        Tabaco
+        Pornografia
+        Redes Sociais
+        Jogos
+        Medicamentos
+      Ferramentas
         registrar_recaida
         editar_registros_recaida
         gerar_relatorio_progresso
       Fluxo
-        Histórico da conversa
-        Mensagem com metadados de tempo
-        Chamada de ferramentas
-        Resposta humana final
-    Banco de Dados (SQLite)
+        Historico da conversa
+        Mensagem com metadados
+        Chamadas de ferramentas
+        Resposta final humana
+    Banco de Dados SQLite
       Tabelas
         conversations
-          name, age, gender
-          addiction_type, duration
+          name age gender
+          addiction_type addiction_duration
           system_prompt
-          recaidas ("YYYY-MM-DD" ; separadas)
+          recaidas formato AAAA-MM-DD separadas por ponto e virgula
         messages
-          role (user/assistant)
-          content, timestamp
-    Relatórios (matplotlib)
-      Calendário colorido
-      Estatísticas (dias limpos, % limpa, streaks)
-      Imagem salva em static/reports
-    Segurança & Boas práticas
-      SECRET_KEY via .env
-      Sanitização de HTML (Markdown)
-      CSRF (futuro)
-      Limpeza de reports (futuro)
-classDef post fill:#ffd,stroke:#333,stroke-width:1px;
+          role user ou assistant
+          content timestamp
+    Relatorios matplotlib
+      Calendario colorido
+      Dias limpos porcentagem streaks
+      Imagem em static/reports
+    Seguranca e boas praticas
+      SECRET_KEY via env
+      Sanitizacao de HTML
+      CSRF futuro
+      Limpeza de reports futuro
 ```
 
 Fluxo de requisição (Mermaid):
 ```mermaid
 sequenceDiagram
-    participant U as Usuário
+    participant U as Usuario
     participant FE as Frontend (Form/Chat)
     participant BE as Flask Backend
-    participant OA as OpenAI (Chat Completions + Tools)
+    participant OA as OpenAI (Chat + Tools)
     participant DB as SQLite
     participant REP as Matplotlib
 
     U->>FE: Mensagem no chat
     FE->>BE: POST /send_message/:id (texto + timestamp)
-    BE->>DB: Grava mensagem do usuário
-    BE->>OA: Histórico + system prompt + tools + metadados
-    OA-->>BE: Resposta (pode conter tool_calls)
-    alt tool_calls
-        BE->>DB: registrar/editar recaídas (quando aplicável)
-        BE->>REP: gerar relatório (quando solicitado)
+    BE->>DB: Grava mensagem do usuario
+    BE->>OA: Historico + prompt + tools + metadados
+    OA-->>BE: Resposta (pode conter chamadas de ferramentas)
+    alt Com ferramentas
+        BE->>DB: Registrar/editar recaidas
+        BE->>REP: Gerar relatorio
         REP-->>BE: Caminho da imagem
-        BE->>OA: Retorna resultados das tools
-        OA-->>BE: Resposta final (texto humano)
-    else sem tools
-        OA-->>BE: Resposta direta (texto humano)
+        BE->>OA: Retorna resultados das ferramentas
+        OA-->>BE: Resposta final humana
+    else Sem ferramentas
+        OA-->>BE: Resposta direta
     end
-    BE->>DB: Grava mensagem do assistente
+    BE->>DB: Grava resposta do assistente
     BE-->>FE: JSON { reply: ... }
-    FE-->>U: Renderiza resposta (Markdown + <img> do relatório)
+    FE-->>U: Renderiza resposta (Markdown e imagem do relatorio)
 ```
 
 Fallback ASCII (se o mindmap não renderizar):
 ```
 SayNoToVices / Aura
 ├─ Objetivo
-│  ├─ Apoio empático e prático
-│  ├─ Relatórios que motivam
+│  ├─ Apoio empatico e pratico
+│  ├─ Relatorios que motivam
 │  └─ Sem julgamentos
 ├─ Frontend
-│  ├─ Formulário (/)
+│  ├─ Formulario (/)
 │  └─ Chat (/chat/:id)
 │     ├─ UI (avatar, lista, envio)
 │     └─ Limpar conversa
 ├─ Backend (Flask)
 │  ├─ Rotas: /, /chat/:id, /send_message/:id, /clear_chat/:id
-│  └─ Helpers: tempo, estatísticas e gráfico
+│  └─ Helpers: tempo, estatisticas e grafico
 ├─ IA (OpenAI)
 │  ├─ Prompts por tema
-│  ├─ Tools: registrar, editar, relatório
-│  └─ Fluxo: histórico → tool_calls → resposta humana
+│  ├─ Ferramentas: registrar, editar, relatorio
+│  └─ Fluxo: historico → ferramentas → resposta humana
 ├─ Banco (SQLite)
-│  ├─ conversations (dados + recaidas ";")
+│  ├─ conversations (dados + recaidas)
 │  └─ messages (role, content, timestamp)
-└─ Relatórios (matplotlib)
-   ├─ Calendário e métricas
+└─ Relatorios (matplotlib)
+   ├─ Calendario e metricas
    └─ Imagem em static/reports
 ```
 
@@ -187,7 +195,7 @@ SayNoToVices / Aura
 ---
 
 ## 🗃️ Banco de dados
-- conversations: dados do usuário, tipo de vício, prompt e campo recaidas (datas “YYYY-MM-DD” separadas por “;”)
+- conversations: dados do usuário, tipo de vício, prompt e campo recaidas (datas AAAA-MM-DD separadas por ponto e vírgula)
 - messages: histórico (user/assistant), conteúdo e timestamp
 
 Dica de evolução: migrar recaídas para uma tabela dedicada (id, conversation_id, date).
@@ -340,3 +348,7 @@ Inclua um arquivo LICENSE e referencie aqui.
 ## 📷 Screenshots
 - Adicione aqui prints do formulário, do chat e um exemplo de relatório para enriquecer o GitHub.  
 Sugestão: uma pasta docs/ com imagens e GIFs curtos.
+
+---
+
+Feito com carinho para quem luta por dias melhores. Você não está sozinho(a). 💙
