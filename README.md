@@ -116,35 +116,6 @@ mindmap
       Limpeza de reports futuro
 ```
 
-Fluxo de requisição (Mermaid):
-```mermaid
-sequenceDiagram
-    participant U as Usuario
-    participant FE as Frontend (Form/Chat)
-    participant BE as Flask Backend
-    participant OA as OpenAI (Chat + Tools)
-    participant DB as SQLite
-    participant REP as Matplotlib
-
-    U->>FE: Mensagem no chat
-    FE->>BE: POST /send_message/:id (texto + timestamp)
-    BE->>DB: Grava mensagem do usuario
-    BE->>OA: Historico + prompt + tools + metadados
-    OA-->>BE: Resposta (pode conter chamadas de ferramentas)
-    alt Com ferramentas
-        BE->>DB: Registrar/editar recaidas
-        BE->>REP: Gerar relatorio
-        REP-->>BE: Caminho da imagem
-        BE->>OA: Retorna resultados das ferramentas
-        OA-->>BE: Resposta final humana
-    else Sem ferramentas
-        OA-->>BE: Resposta direta
-    end
-    BE->>DB: Grava resposta do assistente
-    BE-->>FE: JSON { reply: ... }
-    FE-->>U: Renderiza resposta (Markdown e imagem do relatorio)
-```
-
 Fallback ASCII (se o mindmap não renderizar):
 ```
 SayNoToVices / Aura
