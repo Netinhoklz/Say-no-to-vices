@@ -16,7 +16,7 @@
             <h1>Aura - Seu Assistente Pessoal</h1>
             <p>Para começar, por favor, preencha algumas informações. Seus dados nos ajudam a personalizar seu apoio.</p>
         </div>
-        <form action="{{ url_for('form_page') }}" method="post" class="user-form">
+        <form action="{{ url_for('form_page') }}" method="post" class="user-form" id="user-form">
             <div class="form-group">
                 <label for="name">Seu Nome</label>
                 <input type="text" id="name" name="name" required>
@@ -48,8 +48,23 @@
                 <label for="addiction_duration">Há quanto tempo você lida com isso? (Ex: 6 meses, 2 anos)</label>
                 <input type="text" id="addiction_duration" name="addiction_duration" required>
             </div>
+
+            <!-- NOVO: Seção do Calendário de Histórico -->
+            <div class="form-group">
+                <label>Histórico Inicial (Últimos 30 dias)</label>
+                <p class="form-description">Marque em vermelho os dias em que o vício ocorreu. Os dias verdes representam os dias limpos. Isto é opcional, mas ajuda muito na personalização.</p>
+                <div id="recaida-calendar" class="calendar-grid">
+                    <!-- O JavaScript vai preencher este espaço -->
+                </div>
+                <!-- Campo oculto para enviar os dados para o backend -->
+                <input type="hidden" name="recaida_dates" id="recaida_dates">
+            </div>
+
             <button type="submit" class="submit-btn">Iniciar Conversa</button>
         </form>
     </div>
+
+    <!-- NOVO: Script para o calendário -->
+    <script src="{{ url_for('static', filename='js/form-calendar.js') }}"></script>
 </body>
 </html>
